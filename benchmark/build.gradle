@@ -20,17 +20,20 @@ android {
   }
 }
 
+repositories {
+  mavenCentral()
+  jcenter()
+  maven { url "https://jitpack.io" }
+
+}
 dependencies {
   implementation 'com.android.support:appcompat-v7:27.1.1'
-  implementation project(':darkpiv-gstorage')
+//  implementation project(':darkpiv-gstorage')
+  implementation 'com.github.jitpack:gStorage:1.0.0'
+
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
   implementation 'com.github.prashantsolanki3:Secure-Pref-Manager:1.0.0'
   implementation 'com.google.code.gson:gson:2.8.5'
 
-
-}
-repositories {
-  mavenCentral()
-  maven { url "https://jitpack.io" }
 
 }
