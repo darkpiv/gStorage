@@ -15,8 +15,11 @@ allprojects {
   repositories {
     google()
     jcenter()
+    maven { url "https://jitpack.io" }
+
   }
 }
+
 
 subprojects { project ->
   group = GROUP
