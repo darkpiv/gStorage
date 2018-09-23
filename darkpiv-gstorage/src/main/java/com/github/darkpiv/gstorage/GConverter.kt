@@ -20,8 +20,8 @@ class GConverter(private val parser: Parser) :
   }
 
   @Throws(Exception::class)
-  override fun <T> fromString(value: String, dataInfo: DataInfo): T? {
-    if (value.isEmpty()) {
+  override fun <T> fromString(value: String, dataInfo: DataInfo?): T? {
+    if (value.isEmpty() || dataInfo == null) {
       return null
     }
     GUtils.checkNull("data info", dataInfo)

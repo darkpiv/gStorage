@@ -27,8 +27,7 @@ repositories {
 }
 dependencies {
   implementation 'com.android.support:appcompat-v7:27.1.1'
-//  implementation project(':darkpiv-gstorage')
-  implementation 'com.github.darkpiv:gStorage:1.0.1'
+  implementation project(':darkpiv-gstorage')
 
   implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlinVersion"
   implementation 'com.github.prashantsolanki3:Secure-Pref-Manager:1.0.0'

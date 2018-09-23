@@ -7,7 +7,6 @@
 # For using GSON @Expose annotation
 -keepattributes *Annotation*
 
-# https://github.com/orhanobut/hawk/issues/143
 -keepattributes EnclosingMethod
 
 # Gson specific classes

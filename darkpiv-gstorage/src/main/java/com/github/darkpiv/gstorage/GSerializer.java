@@ -4,6 +4,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.jetbrains.annotations.NotNull;
 
 public class GSerializer implements Serializer {
 
@@ -18,7 +19,7 @@ public class GSerializer implements Serializer {
   }
 
   @Override
-  public <T> String serialize(String cipherText, T originalGivenValue) {
+  public <T> String serialize(@NotNull String cipherText, T originalGivenValue) {
     GUtils.INSTANCE.checkNullOrEmpty("Cipher text", cipherText);
     GUtils.INSTANCE.checkNull("Value", originalGivenValue);
 
