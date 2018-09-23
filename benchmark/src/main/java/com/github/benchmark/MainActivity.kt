@@ -5,10 +5,9 @@ import android.os.Bundle
 import android.preference.PreferenceManager
 import android.util.Log
 import android.widget.Button
+import com.github.darkpiv.gstorage.GStorage
+import com.github.darkpiv.gstorage.LogInterceptor
 import com.google.gson.Gson
-import com.orhanobut.benchmark.R
-import com.orhanobut.hawk.Hawk
-import com.orhanobut.hawk.LogInterceptor
 import com.prashantsolanki.secureprefmanager.SecurePrefManager
 import com.prashantsolanki.secureprefmanager.SecurePrefManagerInit
 import com.prashantsolanki.secureprefmanager.encryptor.AESEncryptor
@@ -31,37 +30,37 @@ class MainActivity : Activity() {
       .initialize()
 
     benchmark.setOnClickListener {
-      timeHawkInit()
-      timeHawkPut(testParent)
-      timeHawkGet()
-      timeHawkContains()
-      timeHawkCount()
-      timeHawkDelete()
+      timeGStorageInit()
+      timeGStoragePut(testParent)
+      timeGStorageGet()
+      timeGStorageContains()
+      timeGStorageCount()
+      timeGStorageDelete()
     }
 
 
   }
 
-  private fun timeHawkInit() {
+  private fun timeGStorageInit() {
     val startTime = System.currentTimeMillis()
 
-    Hawk.init(this).setLogInterceptor(object : LogInterceptor {
+    GStorage.init(this).setLogInterceptor(object : LogInterceptor {
       override fun onLog(message: String) {
         Log.d("HAWK", message)
       }
     }).build()
 
     val endTime = System.currentTimeMillis()
-    println("Hawk.init: " + (endTime - startTime) + "ms")
+    println("GStorage.init: " + (endTime - startTime) + "ms")
   }
 
-  private fun timeHawkPut(testParent: TestParent) {
+  private fun timeGStoragePut(testParent: TestParent) {
     val startTime = System.currentTimeMillis()
 
-    Hawk.put<Any>("key", testParent)
+    GStorage.put<Any>("key", testParent)
 
     val endTime = System.currentTimeMillis()
-    println("Hawk.put: " + (endTime - startTime) + "ms")
+    println("GStorage.put: " + (endTime - startTime) + "ms")
 
     val start = System.currentTimeMillis()
     SecurePrefManager.with(this)
@@ -75,13 +74,13 @@ class MainActivity : Activity() {
 
   }
 
-  private fun timeHawkGet() {
+  private fun timeGStorageGet() {
     val startTime = System.currentTimeMillis()
 
-    Hawk.get<Any>("key")
+    GStorage.get<Any>("key")
 
     val endTime = System.currentTimeMillis()
-    println("Hawk.get: " + (endTime - startTime) + "ms")
+    println("GStorage.get: " + (endTime - startTime) + "ms")
 
     val start = System.currentTimeMillis()
     val rstul = Gson().fromJson<TestParent>(
@@ -93,30 +92,30 @@ class MainActivity : Activity() {
     println("OLD.get: " + (end - start) + "ms")
   }
 
-  private fun timeHawkCount() {
+  private fun timeGStorageCount() {
     val startTime = System.currentTimeMillis()
 
-    Hawk.count()
+    GStorage.count()
 
     val endTime = System.currentTimeMillis()
-    println("Hawk.count: count" + (endTime - startTime) + "ms")
+    println("GStorage.count: count" + (endTime - startTime) + "ms")
   }
 
-  private fun timeHawkContains() {
+  private fun timeGStorageContains() {
     val startTime = System.currentTimeMillis()
 
-    Hawk.contains("key")
+    GStorage.contains("key")
 
     val endTime = System.currentTimeMillis()
-    println("Hawk.count: contains " + (endTime - startTime) + "ms")
+    println("GStorage.count: contains " + (endTime - startTime) + "ms")
   }
 
-  private fun timeHawkDelete() {
+  private fun timeGStorageDelete() {
     val startTime = System.currentTimeMillis()
 
-    Hawk.delete("key")
+    GStorage.delete("key")
 
     val endTime = System.currentTimeMillis()
-    println("Hawk.count: delete " + (endTime - startTime) + "ms")
+    println("GStorage.count: delete " + (endTime - startTime) + "ms")
   }
 }
